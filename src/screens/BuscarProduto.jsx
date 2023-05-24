@@ -23,7 +23,7 @@ export default function BuscarProduto({ navigation }) {
                 return
             } else {
                 const produtosRef = collection(db, "produto");
-                const queryProdutos = query(produtosRef, where("NomeDoProduto", "==", nomeDoProduto));
+                const queryProdutos = query(produtosRef, where("Nome", "==", nomeDoProduto));
                 const querySnapshot = await getDocs(queryProdutos);
                 const produtosTemp = [];
                 querySnapshot.forEach(

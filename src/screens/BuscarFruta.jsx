@@ -25,7 +25,7 @@ export default function BuscarFruta({navigation}){
                 return
             } else {
                 const frutasRef = collection(db, "fruta");
-                const queryFrutas = query(frutasRef, where("nome", "==", nomeDaFruta));
+                const queryFrutas = query(frutasRef, where("Fruta", "==", nomeDaFruta));
                 const querySnapshot = await getDocs(queryFrutas);
                 const frutasTemp = [];
                 querySnapshot.forEach(

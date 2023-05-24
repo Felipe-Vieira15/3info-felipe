@@ -25,7 +25,7 @@ export default function BuscarPessoa({ navigation }) {
                 return
             } else {
                 const pessoasRef = collection(db, "pessoa");
-                const queryPessoas = query(pessoasRef, where("nome", "==", nomeDaPessoa));
+                const queryPessoas = query(pessoasRef, where("Nome", "==", nomeDaPessoa));
                 const querySnapshot = await getDocs(queryPessoas);
                 const pessoasTemp = [];
                 querySnapshot.forEach(

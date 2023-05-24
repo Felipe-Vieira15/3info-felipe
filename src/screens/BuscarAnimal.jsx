@@ -25,7 +25,7 @@ export default function BuscarAnimal({navigation}){
                 return
             } else {
                 const animaisRef = collection(db, "animal");
-                const queryAnimais = query(animaisRef, where("especie", "==", nomeDoAnimal));
+                const queryAnimais = query(animaisRef, where("Nome", "==", nomeDoAnimal));
                 const querySnapshot = await getDocs(queryAnimais);
                 const animaisTemp = [];
                 querySnapshot.forEach(

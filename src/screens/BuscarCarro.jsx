@@ -25,7 +25,7 @@ export default function BuscarCarro({ navigation }) {
                 return
             } else {
                 const carrosRef = collection(db, "Carro");
-                const queryCarros = query(carrosRef, where("nome", "==", nomeDoCarro));
+                const queryCarros = query(carrosRef, where("Marca", "==", nomeDoCarro));
                 const querySnapshot = await getDocs(queryCarros);
                 const carrosTemp = [];
                 querySnapshot.forEach(

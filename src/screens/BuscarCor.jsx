@@ -9,36 +9,23 @@ export default function BuscarCor({navigation}){
     const [nomeDaCor, setNomeDaCor] = useState("");
     const [cores, setCores] = useState([])
 
-    async function queryCores(nomeDaCor = null){
+    async function queryCores(name = null){
         try{
-            if(!nomeDaCor) return
-            if (nomeDaCor === "todos" || nomeDaCor === "Todos"){
-                const coresRef = collection(db, "cor");
-                const querySnapshot = await getDocs(coresRef);
-                const coresTemp = [];
-                querySnapshot.forEach(
-                    (doc) => {
-                        coresTemp.push(doc.data());
-                    }
-                );
-                setCores(coresTemp);
-                return
-            } else {
-                const coresRef = collection(db, "cor");
-                const queryCores = query(coresRef, where("nome", "==", nomeDaCor));
-                const querySnapshot = await getDocs(queryCores);
-                const coresTemp = [];
-                querySnapshot.forEach(
-                    (doc) => {
-                        coresTemp.push(doc.data());
-                  },
-                  setCores(coresTemp)
+            const coresRef = collection(db, "cor");
+            const queryCores = query(coresRef, where("Cor", "==", name));
+            const querySnapshot = await getDocs(queryCores);
+
+            const coresTemp = [];
+            querySnapshot.forEach(
+                (doc) => {
+                    coresTemp.push(doc.data());
+                },
+                setCores(coresTemp)
             );
-            
-            }
-            
+
         } catch(error){console.log(error);}
     }
+
     useEffect(()=> {
         queryCores(nomeDaCor);
     }
@@ -67,7 +54,7 @@ export default function BuscarCor({navigation}){
             <FlatList
                 data={cores}
                 renderItem={({item}) => <Text style={styles.result}>Cor: {item.Cor}</Text>}
-                keyExtractor={(item) => item.id}
+                key={(item) => item.id}
             />
             <Button
                 mode="contained"
